@@ -63,7 +63,8 @@
         .desktop-pdf { display: block; }
         .mobile-pdf-btn { display: none; }
         /* ==================== 手機與平板響應式設定 (RWD) ==================== */
-        @media (max-width: 768px) {
+        /* 將觸發範圍稍微擴大到 850px，確保所有手機與小平板都能正確切換為按鈕 */
+        @media (max-width: 850px) {
             body { padding: 15px; }
             h1 { font-size: 1.75rem; }
             .subtitle { font-size: 1rem; }
@@ -87,9 +88,9 @@
             /* 按鈕大小微調 */
             .next-btn { padding: 12px 24px; font-size: 1rem; width: 100%; box-sizing: border-box; }
             
-            /* ==================== 新增：PDF 在手機端隱藏，改顯示下載按鈕 ==================== */
-            .desktop-pdf { display: none; }
-            .mobile-pdf-btn { display: block; }
+            /* ==================== 新增：PDF 在手機端隱藏，改顯示下載按鈕（加上 !important 強制覆蓋） ==================== */
+            .desktop-pdf { display: none !important; }
+            .mobile-pdf-btn { display: block !important; }
         }
     </style>
 </head>
@@ -156,7 +157,7 @@
     </div>
 
 
-    <!-- ==================== 頁籤 2 的內容 (修正排版後) ==================== -->
+    <!-- ==================== 頁籤 2 的內容 ==================== -->
     <div id="tab-2" class="tab-content">
         <header>
             <h1>圖靈模型的數學語言：反應、擴散與相變</h1>
@@ -179,7 +180,6 @@
                 <div class="eq-label"><strong>[ 濃度時間變化 ] = [ 局部化學反應  ] + [ 空間擴散 ]</strong></div>
             </div>
             
-            <!-- 方程式下的文字，直接與圖 2.1 組合 -->
             <div class="side-by-side">
                 <div class="text-content">
                     <p><strong>從方程式到特徵尺度：</strong></p>
@@ -242,7 +242,6 @@
             <div class="eq-label"><strong>[ 彎曲處擴散速度 $d(\kappa)$ ] = [ 基礎速度 $d_0$ ] × [ 平滑 S 型調節因子 ]</strong></div>
         </div>
 
-        <!-- 採用左右對照排版：左邊為文字點列，右邊為 MATLAB 產生的關係圖 -->
         <div class="side-by-side">
             <div class="text-content">
                 <p>其中 <strong>$r_d$ 為連動強度（Coupling coefficient）</strong>，它是決定斑紋走向的最關鍵開關：</p>
@@ -270,10 +269,8 @@
                 <figcaption style="margin-top: 8px; font-size: 0.9em; color: #555;">圖 3.2 三維貓咪 (a) 與斑馬 (b) 在不同連動強度 $r_d$ 下的條紋演化，以及對應的梯度比例定量分析 (c, d)。</figcaption>
             </figure>
             
-            <!-- 右圖：G1/G2 機制圖 -->
             <figure style="flex: 1; text-align: center; margin: 0;">
                 <div style="height: 280px; display: flex; align-items: center; justify-content: center; background: #fafafa; border-radius: 8px; border: 1px solid #eaeaea; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                    <!-- 請將檔名改為您的 G1/G2 圖片檔名（例如：g1g2.png） -->
                     <img src="G1G2.png" alt="G1與G2幾何機制圖解" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px;">
                 </div>
                 <figcaption style="margin-top: 8px; font-size: 0.9em; color: #555;">圖 3.3 方向主導梯度（Gradient Fraction）指標物理意義：$G_1$ 較高代表條紋呈縱向（軸向）延伸排列；$G_2$ 較高代表條紋呈環向（繞圈）包裹排列。</figcaption>
@@ -412,19 +409,20 @@
 
         <section class="desktop-pdf" style="text-align: center; margin-bottom: 20px;">
             <iframe src="paper.pdf" width="100%" height="800px" style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <p>您的瀏覽器不支援內建 PDF 閱讀器，請 <a href="a4_assignment.pdf" target="_blank" style="color: #d9534f; font-weight: bold;">點此下載作業 PDF</a>。</p>
+                <p>您的瀏覽器不支援內建 PDF 閱讀器，請 <a href="paper.pdf" target="_blank" style="color: #d9534f; font-weight: bold;">點此下載論文 PDF</a>。</p>
             </iframe>
         </section>
 
 
+        <!-- 加上了 download 屬性，強制瀏覽器將其視為下載檔而不是網頁 -->
         <section class="mobile-pdf-btn" style="text-align: center; margin: 40px 0; padding: 40px 20px; background-color: #f9f9f9; border-radius: 12px; border: 1px solid #eaeaea; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <h3 style="margin-bottom: 15px; color: #333; font-size: 1.5rem;">📄 期初作業 PDF 檔案</h3>
+            <h3 style="margin-bottom: 15px; color: #333; font-size: 1.5rem;">📄 論文 PDF 檔案</h3>
             <p style="color: #666; margin-bottom: 30px; font-size: 1rem;">
-                （偵測到您可能使用手機瀏覽，為確保畫面順暢，請點擊下方按鈕開啟完整作業）
+                （為避免手機瀏覽器顯示異常，請點擊下方按鈕開啟或下載 PDF）
             </p>
             
-            <a href="paper.pdf" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #2b5797; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                📥 點此開啟 / 下載 A4 書面作業
+            <a href="paper.pdf" target="_blank" download="paper.pdf" style="display: inline-block; padding: 15px 30px; background-color: #2b5797; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                📥 點此下載 / 開啟原版論文
             </a>
         </section>
         
@@ -449,14 +447,15 @@
         </section>
 
     
+        <!-- 加上了 download 屬性，強制瀏覽器將其視為下載檔而不是網頁 -->
         <section class="mobile-pdf-btn" style="text-align: center; margin: 40px 0; padding: 40px 20px; background-color: #f9f9f9; border-radius: 12px; border: 1px solid #eaeaea; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
             <h3 style="margin-bottom: 15px; color: #333; font-size: 1.5rem;">📄 期初作業 PDF 檔案</h3>
             <p style="color: #666; margin-bottom: 30px; font-size: 1rem;">
-                （偵測到您可能使用手機瀏覽，為確保畫面順暢，請點擊下方按鈕開啟完整作業）
+                （為避免手機瀏覽器顯示異常，請點擊下方按鈕開啟或下載 PDF）
             </p>
             
-            <a href="a4_assignment.pdf" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #2b5797; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                📥 點此開啟 / 下載 A4 書面作業
+            <a href="a4_assignment.pdf" target="_blank" download="a4_assignment.pdf" style="display: inline-block; padding: 15px 30px; background-color: #2b5797; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                📥 點此下載 / 開啟 A4 書面作業
             </a>
         </section>
     </div>
