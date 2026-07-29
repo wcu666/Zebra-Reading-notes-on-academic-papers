@@ -62,9 +62,10 @@
         /* ==================== 手機與平板響應式設定 (RWD) ==================== */
         .desktop-pdf { display: block; }
         .mobile-pdf-btn { display: none; }
-        /* ==================== 手機與平板響應式設定 (RWD) ==================== */
-        /* 將觸發範圍稍微擴大到 850px，確保所有手機與小平板都能正確切換為按鈕 */
-        @media (max-width: 1025px) {
+
+        /* 條件 1：螢幕寬度小於 1025px */
+        /* 條件 2：或者是觸控螢幕設備 (hover: none and pointer: coarse) */
+        @media (max-width: 1025px), (hover: none) and (pointer: coarse) {
             body { padding: 15px; }
             h1 { font-size: 1.75rem; }
             .subtitle { font-size: 1rem; }
@@ -88,39 +89,10 @@
             /* 按鈕大小微調 */
             .next-btn { padding: 12px 24px; font-size: 1rem; width: 100%; box-sizing: border-box; }
             
-            /* ==================== 新增：PDF 在手機端隱藏，改顯示下載按鈕（加上 !important 強制覆蓋） ==================== */
+            /* PDF 在手機端隱藏，改顯示下載按鈕（加上 !important 強制覆蓋） */
             .desktop-pdf { display: none !important; }
             .mobile-pdf-btn { display: block !important; }
-        }/* ==================== 手機與平板響應式設定 (RWD) ==================== */
-.desktop-pdf { display: block; }
-.mobile-pdf-btn { display: none; }
-
-/* 條件 1：螢幕寬度小於 1024px */
-/* 條件 2：或者是觸控螢幕設備 (hover: none and pointer: coarse) */
-    @media (max-width: 1024px), (hover: none) and (pointer: coarse) {
-        body { padding: 15px; }
-        h1 { font-size: 1.75rem; }
-        .subtitle { font-size: 1rem; }
-        h2 { font-size: 1.3rem; }
-        p { font-size: 1rem; }
-
-        nav { gap: 10px 15px; margin-bottom: 25px; }
-        nav span { font-size: 0.95rem; }
-
-        .side-by-side { flex-direction: column; gap: 20px; }
-        .image-grid-2 { flex-direction: column; gap: 20px; }
-        .image-grid-2 figure { width: 100%; }
-
-        .footer-container { flex-direction: column; text-align: center; gap: 15px; }
-        .footer-content { text-align: center; }
-        .footer-logo { height: 60px; }
-
-        .next-btn { padding: 12px 24px; font-size: 1rem; width: 100%; box-sizing: border-box; }
-        
-        /* 強制隱藏 PDF 框架，改為顯示下載按鈕 */
-        .desktop-pdf { display: none !important; }
-        .mobile-pdf-btn { display: block !important; }
-    }
+        }
     </style>
 </head>
 <body>
@@ -228,7 +200,7 @@
                 <div class="text-content">
                     <p>線性穩定性分析雖然解決圖案「特徵寬度」的決定機制，但傳統模型假設擴散在各方向均勻進行「各向同性」(Isotropic Diffusion）。在缺乏方向偏好下，系統僅能生成無序的迷宮紋或隨機斑點。</p>
                     <p>為探討條紋定向排列的機制，作者在二維平面模擬中（圖 2.2），引入了<strong>擴散異向性</strong>—人為調降抑制劑沿垂直軸（$y$ 軸）的擴散速率：</p>
-                    <div style="text-align: center; margin: 10px 0; font-size: 1.1rem; font-weight: bold;">$$ D_{v,y} < D_{v,x} $$</div>
+                    <div style="text-align: center; margin: 10px 0; font-size: 1.1rem; font-weight: bold;">$$ D_{v,y} &lt; D_{v,x} $$</div>
                     <p>結果顯示，方向性的擴散速率差打破旋轉對稱性，引發系統相變：原本無序的圖樣被拉長，並自動沿擴散速率較慢的方向（$y$ 軸）進行定向對齊，形成整齊的平行條紋。</p>
                 </div>
                 <figure>
@@ -275,9 +247,9 @@
             <div class="text-content">
                 <p>其中 <strong>$r_d$ 為連動強度（Coupling coefficient）</strong>，它是決定斑紋走向的最關鍵開關：</p>
                 <ul>
-                    <li><strong>$r_d < 0$（負連動）：</strong> 越彎曲的地方（$\kappa$ 大）擴散越慢，條紋會自動順著身體幾何完美排列（大自然真實情況）。</li>
+                    <li><strong>$r_d &lt; 0$（負連動）：</strong> 越彎曲的地方（$\kappa$ 大）擴散越慢，條紋會自動順著身體幾何完美排列（大自然真實情況）。</li>
                     <li><strong>$r_d = 0$（無連動）：</strong> 擴散與幾何無關（各向同性），條紋退化為隨機迷宮紋。</li>
-                    <li><strong>$r_d > 0$（正連動）：</strong> 越彎曲的地方擴散越快，條紋走向直接旋轉 $90^\circ$ 反轉！</li>
+                    <li><strong>$r_d &gt; 0$（正連動）：</strong> 越彎曲的地方擴散越快，條紋走向直接旋轉 $90^\circ$ 反轉！</li>
                 </ul>
             </div>
             <figure>
@@ -305,7 +277,7 @@
                 <figcaption style="margin-top: 8px; font-size: 0.9em; color: #555;">圖 3.3 方向主導梯度（Gradient Fraction）指標物理意義：$G_1$ 較高代表條紋呈縱向（軸向）延伸排列；$G_2$ 較高代表條紋呈環向（繞圈）包裹排列。</figcaption>
             </figure>
         </div>
-        <p>如上圖所示，當 $r_d < 0$ 時，系統重現真實動物的毛色：斑馬軀幹呈垂直直紋、四肢呈現水平橫紋。而下方 (c) 與 (d) 的定量分析則證實，只要調整 $r_d$，系統的方向主導梯度（Gradient Fraction）就會發生顯著相變。</p>
+        <p>如上圖所示，當 $r_d &lt; 0$ 時，系統重現真實動物的毛色：斑馬軀幹呈垂直直紋、四肢呈現水平橫紋。而下方 (c) 與 (d) 的定量分析則證實，只要調整 $r_d$，系統的方向主導梯度（Gradient Fraction）就會發生顯著相變。</p>
     </section>
 
     <!-- 下一頁按鈕 -->
