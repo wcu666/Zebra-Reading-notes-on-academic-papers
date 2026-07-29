@@ -60,6 +60,9 @@
         .footer-paper-title { font-style: italic; color: #777; font-size: 0.9rem; margin-top: 6px; }
 
         /* ==================== 手機與平板響應式設定 (RWD) ==================== */
+        .desktop-pdf { display: block; }
+        .mobile-pdf-btn { display: none; }
+        /* ==================== 手機與平板響應式設定 (RWD) ==================== */
         @media (max-width: 768px) {
             body { padding: 15px; }
             h1 { font-size: 1.75rem; }
@@ -84,8 +87,9 @@
             /* 按鈕大小微調 */
             .next-btn { padding: 12px 24px; font-size: 1rem; width: 100%; box-sizing: border-box; }
             
-            /* PDF 在手機端調整高度 */
-            iframe { height: 500px !important; }
+            /* ==================== 新增：PDF 在手機端隱藏，改顯示下載按鈕 ==================== */
+            .desktop-pdf { display: none; }
+            .mobile-pdf-btn { display: block; }
         }
     </style>
 </head>
@@ -406,10 +410,22 @@
             <p class="subtitle">— Physical Review E 原始文獻 —</p>
         </header>
 
-        <section style="text-align: center; margin-bottom: 20px;">
+        <section class="desktop-pdf" style="text-align: center; margin-bottom: 20px;">
             <iframe src="paper.pdf" width="100%" height="800px" style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <p>您的瀏覽器不支援內建 PDF 閱讀器，請 <a href="paper.pdf" target="_blank" style="color: #d9534f; font-weight: bold;">點此下載論文 PDF</a>。</p>
+                <p>您的瀏覽器不支援內建 PDF 閱讀器，請 <a href="a4_assignment.pdf" target="_blank" style="color: #d9534f; font-weight: bold;">點此下載作業 PDF</a>。</p>
             </iframe>
+        </section>
+
+
+        <section class="mobile-pdf-btn" style="text-align: center; margin: 40px 0; padding: 40px 20px; background-color: #f9f9f9; border-radius: 12px; border: 1px solid #eaeaea; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 15px; color: #333; font-size: 1.5rem;">📄 期初作業 PDF 檔案</h3>
+            <p style="color: #666; margin-bottom: 30px; font-size: 1rem;">
+                （偵測到您可能使用手機瀏覽，為確保畫面順暢，請點擊下方按鈕開啟完整作業）
+            </p>
+            
+            <a href="paper.pdf" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #2b5797; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                📥 點此開啟 / 下載 A4 書面作業
+            </a>
         </section>
         
         <div class="next-btn-container" style="margin-top: 30px;">
@@ -425,10 +441,23 @@
             <p class="subtitle">— 基礎物理實驗學 3B 期初作業 —</p>
         </header>
 
-        <section style="text-align: center; margin-bottom: 20px;">
+  
+        <section class="desktop-pdf" style="text-align: center; margin-bottom: 20px;">
             <iframe src="a4_assignment.pdf" width="100%" height="800px" style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <p>您的瀏覽器不支援內建 PDF 閱讀器，請 <a href="a4_assignment.pdf" target="_blank" style="color: #d9534f; font-weight: bold;">點此下載作業 PDF</a>。</p>
             </iframe>
+        </section>
+
+    
+        <section class="mobile-pdf-btn" style="text-align: center; margin: 40px 0; padding: 40px 20px; background-color: #f9f9f9; border-radius: 12px; border: 1px solid #eaeaea; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 15px; color: #333; font-size: 1.5rem;">📄 期初作業 PDF 檔案</h3>
+            <p style="color: #666; margin-bottom: 30px; font-size: 1rem;">
+                （偵測到您可能使用手機瀏覽，為確保畫面順暢，請點擊下方按鈕開啟完整作業）
+            </p>
+            
+            <a href="a4_assignment.pdf" target="_blank" style="display: inline-block; padding: 15px 30px; background-color: #2b5797; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                📥 點此開啟 / 下載 A4 書面作業
+            </a>
         </section>
     </div>
 
