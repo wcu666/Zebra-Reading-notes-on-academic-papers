@@ -62,6 +62,9 @@
         /* ==================== 手機與平板響應式設定 (RWD) ==================== */
         .desktop-pdf { display: block; }
         .mobile-pdf-btn { display: none; }
+
+        /* 條件 1：螢幕寬度小於 1025px */
+        /* 條件 2：或者是觸控螢幕設備 (hover: none and pointer: coarse) */
         @media (max-width: 1025px), (hover: none) and (pointer: coarse) {
             body { padding: 15px; }
             h1 { font-size: 1.75rem; }
@@ -73,18 +76,15 @@
             nav { gap: 10px 15px; margin-bottom: 25px; }
             nav span { font-size: 0.95rem; }
 
-            /* 頁尾系徽與文字在手機改為上下置中堆疊 */
-            .footer-container { flex-direction: column; text-align: center; gap: 15px; }
-            .footer-content { text-align: center; }
-            .footer-logo { height: 60px; }
 
             /* 按鈕大小微調 */
             .next-btn { padding: 12px 24px; font-size: 1rem; width: 100%; box-sizing: border-box; }
             
-            /* PDF 在手機端隱藏，改顯示下載按鈕 */
+            /* PDF 在手機端隱藏，改顯示下載按鈕（加上 !important 強制覆蓋） */
             .desktop-pdf { display: none !important; }
             .mobile-pdf-btn { display: block !important; }
         }
+    </style>
 </head>
 <body>
 
