@@ -1,4 +1,4 @@
-# Animal Stripe Formation: A Physical Mechanism Report
+# Animal Stripe Formation: A Physical Mechanism Report 
 
 ## 📌 Overview
 This project is an interactive, web-based academic report exploring the physical and mathematical mechanisms behind the formation of animal stripes (e.g., zebras). It explains how nature utilizes fundamental physics—specifically Reaction-Diffusion systems and surface curvature—to determine the orientation and patterns of animal coats without relying on complex genetic pre-positioning.
