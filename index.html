@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大自然的隱形畫筆：解密斑馬條紋 | 基礎物理實驗學 3B 期初作業</title>
     
- 
+    <!-- 支援 LaTeX 公式的腳本 -->
     <script>
         MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     
     <style>
-        
+        /* 基礎科普雜誌風格設定 */
         body { font-family: 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', Arial, sans-serif; line-height: 1.8; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #fcfcfc; }
         
-      
+        /* 導覽列 (分頁標籤) */
         nav { border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
         nav span { cursor: pointer; color: #777; font-weight: bold; font-size: 1.05rem; transition: color 0.3s; padding-bottom: 5px; }
         nav span:hover { color: #d9534f; }
         nav span.active { color: #222; border-bottom: 3px solid #d9534f; }
 
+        /* 內容區塊隱藏與顯示的關鍵 */
         .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-     
+        /* 標題與內文區塊 */
         header { text-align: center; margin-bottom: 50px; margin-top: 20px; }
         h1 { font-size: 2.2rem; color: #111; margin-bottom: 15px; line-height: 1.4; }
         .subtitle { font-size: 1.2rem; color: #666; font-style: italic; }
@@ -33,7 +34,7 @@
         h2 { font-size: 1.5rem; border-left: 5px solid #d9534f; padding-left: 15px; margin-bottom: 20px; color: #222; }
         p { font-size: 1.1rem; margin-bottom: 20px; letter-spacing: 0.5px; text-align: justify; }
 
-        
+        /* 排版與方程式樣式 */
         .equation-box { background-color: #f4f4f4; border-radius: 8px; padding: 20px; margin: 25px 0; text-align: center; font-size: 1.25rem; box-shadow: inset 0 0 5px rgba(0,0,0,0.05); line-height: 1.8; overflow-x: auto; }
         .eq-label { font-size: 0.9rem; color: #666; font-family: 'Helvetica Neue', sans-serif; margin-top: 12px; }
         .image-grid-2 { display: flex; justify-content: center; gap: 20px; margin: 30px 0 10px 0; }
@@ -45,29 +46,41 @@
         .side-by-side img { width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
         figcaption { text-align: center; font-size: 0.95rem; color: #555; margin-top: 12px; font-weight: 500; }
 
- 
+        /* 下一頁按鈕 */
         .next-btn-container { text-align: center; margin-top: 60px; margin-bottom: 50px; }
         .next-btn { cursor: pointer; display: inline-block; background-color: #222; color: white; padding: 16px 32px; font-size: 1.1rem; border-radius: 40px; font-weight: bold; border: none; transition: all 0.3s ease; }
         .next-btn:hover { background-color: #d9534f; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(217, 83, 79, 0.3); }
 
-        
+        /* 版權宣告區塊（支援手機與電腦相容） */
         footer { padding: 40px 20px 20px 20px; margin-top: 50px; font-size: 0.95rem; color: #555; border-top: 1px solid #eaeaea; line-height: 1.6; }
         .footer-container { display: flex; align-items: center; justify-content: center; gap: 25px; }
         .footer-logo { height: 75px; flex-shrink: 0; }
         .footer-content { text-align: left; }
         .footer-text { margin: 3px 0; }
         .footer-paper-title { font-style: italic; color: #777; font-size: 0.9rem; margin-top: 6px; }
+
+        /* ==================== 手機與平板響應式設定 (RWD) ==================== */
         .desktop-pdf { display: block; }
         .mobile-pdf-btn { display: none; }
+
+        /* 條件 1：螢幕寬度小於 1025px */
+        /* 條件 2：或者是觸控螢幕設備 (hover: none and pointer: coarse) */
         @media (max-width: 1025px), (hover: none) and (pointer: coarse) {
             body { padding: 15px; }
             h1 { font-size: 1.75rem; }
             .subtitle { font-size: 1rem; }
             h2 { font-size: 1.3rem; }
             p { font-size: 1rem; }
+
+            /* 導覽列縮小縮緊 */
             nav { gap: 10px 15px; margin-bottom: 25px; }
             nav span { font-size: 0.95rem; }
+
+
+            /* 按鈕大小微調 */
             .next-btn { padding: 12px 24px; font-size: 1rem; width: 100%; box-sizing: border-box; }
+            
+            /* PDF 在手機端隱藏，改顯示下載按鈕（加上 !important 強制覆蓋） */
             .desktop-pdf { display: none !important; }
             .mobile-pdf-btn { display: block !important; }
         }
@@ -75,14 +88,15 @@
 </head>
 <body>
 
+    <!-- 頂部頁籤導覽列 -->
     <nav>
         <span id="tab-btn-1" class="active" onclick="switchTab(1)">1. 前言</span>
         <span id="tab-btn-2" onclick="switchTab(2)">2. 圖靈模型</span>
         <span id="tab-btn-3" onclick="switchTab(3)">3. 曲率與擴散</span>
         <span id="tab-btn-4" onclick="switchTab(4)">4. 論文結論</span>
         <span id="tab-btn-5" onclick="switchTab(5)">5. 學習心得</span>
-        <span id="tab-btn-6" onclick="switchTab(6)">6. 原版論文閱讀</span>
-        <span id="tab-btn-7" onclick="switchTab(7)">7. 書面作業展示</span>
+        <span id="tab-btn-6" onclick="switchTab(6)">6. 論文 PDF</span>
+        <span id="tab-btn-7" onclick="switchTab(7)">7. A4 作業 PDF</span>
     </nav>
 
     <!-- ==================== 頁籤 1 的內容 ==================== -->
@@ -161,12 +175,12 @@
             <div class="side-by-side">
                 <div class="text-content">
                     <p><strong>從方程式到特徵尺度：</strong></p>
-                    <p>透過對均勻穩態進行<strong>線性穩定性分析</strong>，可解出擾動隨時間變化的生長速率（圖 2.1）。分析顯示，系統存在一個對應<strong>最大生長速率的特徵波數（Wave number, $k$）</strong>。</p>
-                    <p>換句話說，圖靈不穩定性產生的斑紋並非大小隨機，而是由擴散係數比值（$D_v/D_u$）決定條紋的重複週期與整體特徵尺度（即一組黑白條紋的總寬度）。</p>
+                    <p><strong>不穩定性觸發（圖 2.1）：</strong> 抑制劑與活化劑的擴散係數比值 $d = D_v/D_u$ 須超越臨界閾值，使最大生長速率 $\lambda_{\text{max}} > 0$，方能打破均勻穩態並觸發圖靈不穩定性以生成空間圖樣。</p>
+                    <p><strong>特徵波數 $k_*$ 與空間週期：</strong> 系統對不同空間波數 $k$ 之微小擾動具相異的生長速率 $\lambda(k)$。分析顯示存在一特定特徵波數 $k_*$ 對應最高生長速率（極大值 $\lambda(k_*)$）；該波數將在線性競爭中主導系統演化，並透過空間波長關係（條紋週期 $\lambda_{\text{空間}} = 2\pi / k_*$）精確決定最終斑紋的固定重複寬度。</p>       
                 </div>
                 <figure>
                     <img src="growth_rate.png" alt="最大生長速率與波數分析">
-                    <figcaption>圖 2.1 最大生長速率曲線，峰值對應的波數 $k$ 決定了圖案的特徵間距</figcaption>
+                    <figcaption>圖 2.1 最大生長速率 $𝜆(𝑘_∗)$隨擴散係數比值$𝑑$之變化曲線</figcaption>
                 </figure>
             </div>
         </section>
@@ -231,7 +245,7 @@
             </div>
             <figure>
                 <img src="sigmoid_coupling.png" alt="擴散速率與曲率之 S 型耦合圖" style="max-width:90%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <figcaption>圖 3.1 擴散速率 $d(\kappa)$ 與局部曲率 $\kappa$ 在不同連動強度 $r_d$ 下的 Sigmoid 關係曲線。</figcaption>
+                <figcaption>圖 3.1 擴散速率 $d(\kappa)/𝑑_0$ 與局部曲率 $\kappa$ 在不同連動強度 $r_d$ 下的 Sigmoid 關係曲線。</figcaption>
             </figure>
         </div>
     </section>
@@ -373,7 +387,7 @@
         
         <!-- 下一頁按鈕 -->
         <div class="next-btn-container" style="margin-top: 30px;">
-            <button class="next-btn" onclick="switchTab(6)">下一頁：原版論文閱讀 ➔</button>
+            <button class="next-btn" onclick="switchTab(6)">下一頁：論文 PDF ➔</button>
         </div>
     </div>
 
@@ -405,7 +419,7 @@
         </section>
         
         <div class="next-btn-container" style="margin-top: 30px;">
-            <button class="next-btn" onclick="switchTab(7)">下一頁：書面作業展示➔</button>
+            <button class="next-btn" onclick="switchTab(7)">下一頁：A4 作業 PDF ➔</button>
         </div>
     </div>
 
@@ -413,7 +427,7 @@
     <!-- ==================== 頁籤 7 的內容 (A4 作業 PDF 區) ==================== -->
     <div id="tab-7" class="tab-content">
         <header>
-            <h1>書面作業展示</h1>
+            <h1>A4 書面作業展示</h1>
             <p class="subtitle">— 基礎物理實驗學 3B 期初作業 —</p>
         </header>
 
